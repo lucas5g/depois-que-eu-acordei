@@ -111,7 +111,7 @@ export function DreamForm({ action, initial, initialImage, mode }: DreamFormProp
           aria-invalid={Boolean(fieldError("description"))}
         />
         <p className="field-hint">
-          Os parágrafos serão preservados. Use *texto* para escrever em negrito.
+          Os parágrafos serão preservados. Use **texto** para escrever em negrito.
         </p>
         {fieldError("description") && <p className="field-error">{fieldError("description")}</p>}
       </div>

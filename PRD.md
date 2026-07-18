@@ -45,7 +45,7 @@ Cada relato deve possuir:
 | --- | --- | --- |
 | Foto | Sim | Uma imagem em JPG, PNG ou WebP, com texto alternativo para acessibilidade. |
 | Título | Sim | Entre 3 e 100 caracteres. |
-| Descrição | Sim | Texto do relato, com suporte a parágrafos e negrito usando `*texto*`, entre 10 e 10.000 caracteres. |
+| Descrição | Sim | Texto do relato, com suporte a parágrafos e negrito usando `**texto**`, entre 10 e 10.000 caracteres. |
 | Data de publicação | Automática | Definida quando o relato for publicado. |
 | Status | Sim | Rascunho ou publicado. |
 
