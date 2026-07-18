@@ -17,16 +17,25 @@ export function formatShortDate(date: Date) {
 }
 
 export function excerpt(text: string, length = 180) {
-  const normalized = text.replace(/\*\*([^*\n]+)\*\*/g, "$1").replace(/\s+/g, " ").trim();
+  const normalized = text
+    .replace(/\*\*([^*\n]+)\*\*|\*([^*\n]+)\*/g, (_match, double, single) => double ?? single)
+    .replace(/\s+/g, " ")
+    .trim();
   if (normalized.length <= length) return normalized;
   return `${normalized.slice(0, length).trimEnd()}…`;
 }
 
 export function parseFormattedText(text: string) {
-  return text.split(/(\*\*[^*\n]+\*\*)/g).filter(Boolean).map((part) => ({
-    text: part.startsWith("**") && part.endsWith("**") ? part.slice(2, -2) : part,
-    bold: part.startsWith("**") && part.endsWith("**"),
-  }));
+  return text.split(/(\*\*[^*\n]+\*\*|\*[^*\n]+\*)/g).filter(Boolean).map((part) => {
+    const markerLength = part.startsWith("**") && part.endsWith("**") ? 2
+      : part.startsWith("*") && part.endsWith("*") ? 1
+        : 0;
+
+    return {
+      text: markerLength ? part.slice(markerLength, -markerLength) : part,
+      bold: markerLength > 0,
+    };
+  });
 }
 
 export function imageUrl(id: string, updatedAt: Date) {

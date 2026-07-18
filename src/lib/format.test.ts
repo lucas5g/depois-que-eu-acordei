@@ -16,9 +16,10 @@ describe("parseFormattedText", () => {
     ]);
   });
 
-  it("não interpreta asteriscos simples como negrito", () => {
+  it("interpreta asteriscos simples como negrito", () => {
     expect(parseFormattedText("Um *trecho comum*")).toEqual([
-      { text: "Um *trecho comum*", bold: false },
+      { text: "Um ", bold: false },
+      { text: "trecho comum", bold: true },
     ]);
   });
 });
@@ -26,5 +27,6 @@ describe("parseFormattedText", () => {
 describe("excerpt", () => {
   it("remove os marcadores de negrito do resumo", () => {
     expect(excerpt("Eu **superei esse desejo** hoje.")).toBe("Eu superei esse desejo hoje.");
+    expect(excerpt("Eu *superei esse desejo* hoje.")).toBe("Eu superei esse desejo hoje.");
   });
 });
