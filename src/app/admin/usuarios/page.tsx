@@ -18,7 +18,7 @@ export default async function UsersPage() {
         <div>
           <p className="eyebrow">Acessos</p>
           <h1>Usuários</h1>
-          <p>Contas Google cadastradas. Apenas administradores podem editar e publicar sonhos.</p>
+          <p>Contas Google cadastradas. Apenas administradores podem editar e publicar relatos.</p>
         </div>
       </div>
 

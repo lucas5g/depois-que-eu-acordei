@@ -24,19 +24,19 @@ export default async function HomePage() {
     <>
       <section className="hero site-shell" aria-labelledby="hero-title">
         <div>
-          <p className="eyebrow">Um diário de sonhos</p>
+          <p className="eyebrow">Um diário do que me atravessa</p>
           <h1 id="hero-title">Depois que eu acordei</h1>
           <p className="hero-intro">
-            Fragmentos do que permaneceu depois do despertar. Imagens, lugares e
-            histórias que quase desapareceram pela manhã.
+            Sonhos, desejos, conflitos e escolhas. Relatos do que vivi por dentro
+            e do que consegui transformar.
           </p>
         </div>
       </section>
 
       <section className="dream-feed site-shell" aria-labelledby="dreams-heading">
         <div className="section-heading">
-          <h2 id="dreams-heading">Sonhos recentes</h2>
-          <span>{dreams.length.toString().padStart(2, "0")} fragmentos</span>
+          <h2 id="dreams-heading">Relatos recentes</h2>
+          <span>{dreams.length.toString().padStart(2, "0")} registros</span>
         </div>
         {dreams.length > 0 ? (
           <div className="dream-grid">
@@ -46,8 +46,8 @@ export default async function HomePage() {
           </div>
         ) : (
           <div className="empty-state">
-            <strong>A noite ainda está em silêncio.</strong>
-            <span>O primeiro sonho aparecerá aqui quando for lembrado.</span>
+            <strong>Ainda não há relatos por aqui.</strong>
+            <span>O primeiro registro aparecerá aqui quando for publicado.</span>
           </div>
         )}
       </section>

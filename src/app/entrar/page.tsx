@@ -23,7 +23,7 @@ export default async function SignInPage({
         <p className="eyebrow">Área reservada</p>
         <h1>Entre para continuar</h1>
         <p>
-          Use sua conta Google. Novos perfis podem ler os sonhos; apenas
+          Use sua conta Google. Novos perfis podem ler os relatos; apenas
           administradores acessam o painel.
         </p>
         {error && <p className="form-error">Não foi possível entrar com essa conta.</p>}

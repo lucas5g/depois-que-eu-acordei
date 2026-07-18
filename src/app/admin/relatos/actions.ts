@@ -22,7 +22,7 @@ function readFields(formData: FormData): Record<keyof DreamFields, string> {
 }
 
 async function uniqueSlug(title: string) {
-  const base = slugify(title) || "sonho";
+  const base = slugify(title) || "relato";
   let candidate = base;
   let suffix = 2;
 
@@ -62,7 +62,7 @@ export async function createDream(
   const file = formData.get("image");
   if (!(file instanceof File) || file.size === 0) {
     return {
-      error: "Adicione uma foto ao sonho.",
+      error: "Adicione uma foto ao relato.",
       fieldErrors: { image: ["Selecione uma foto JPG, PNG ou WebP."] },
       values: parsed.data,
     };
@@ -94,7 +94,7 @@ export async function createDream(
     });
   } catch {
     return {
-      error: "Não foi possível salvar o sonho. Seus textos foram preservados.",
+      error: "Não foi possível salvar o relato. Seus textos foram preservados.",
       values: parsed.data,
     };
   }
@@ -111,7 +111,7 @@ export async function updateDream(
 ): Promise<DreamActionState> {
   await requireAdmin();
   const existing = await prisma.dream.findUnique({ where: { id } });
-  if (!existing) return { error: "Sonho não encontrado." };
+  if (!existing) return { error: "Relato não encontrado." };
 
   const raw = readFields(formData);
   const parsed = dreamSchema.safeParse(raw);
@@ -154,13 +154,13 @@ export async function updateDream(
     });
   } catch {
     return {
-      error: "Não foi possível atualizar o sonho. Seus textos foram preservados.",
+      error: "Não foi possível atualizar o relato. Seus textos foram preservados.",
       values: parsed.data,
     };
   }
 
   revalidatePath("/");
-  revalidatePath(`/sonhos/${existing.slug}`);
+  revalidatePath(`/relatos/${existing.slug}`);
   revalidatePath("/admin");
   redirect("/admin?sucesso=atualizado");
 }
@@ -173,7 +173,7 @@ export async function deleteDream(formData: FormData) {
 
   await prisma.dream.delete({ where: { id } });
   revalidatePath("/");
-  revalidatePath(`/sonhos/${dream.slug}`);
+  revalidatePath(`/relatos/${dream.slug}`);
   revalidatePath("/admin");
   redirect("/admin?sucesso=excluido");
 }

@@ -110,7 +110,9 @@ export function DreamForm({ action, initial, initialImage, mode }: DreamFormProp
           defaultValue={values?.description ?? ""}
           aria-invalid={Boolean(fieldError("description"))}
         />
-        <p className="field-hint">Os parágrafos serão preservados na publicação.</p>
+        <p className="field-hint">
+          Os parágrafos serão preservados. Use *texto* para escrever em negrito.
+        </p>
         {fieldError("description") && <p className="field-error">{fieldError("description")}</p>}
       </div>
 
@@ -125,7 +127,7 @@ export function DreamForm({ action, initial, initialImage, mode }: DreamFormProp
 
       <div className="form-footer">
         <Link className="secondary-button" href="/admin">Cancelar</Link>
-        <SubmitButton>{mode === "create" ? "Salvar sonho" : "Salvar alterações"}</SubmitButton>
+        <SubmitButton>{mode === "create" ? "Salvar relato" : "Salvar alterações"}</SubmitButton>
       </div>
     </form>
   );

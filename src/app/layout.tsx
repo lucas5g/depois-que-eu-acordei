@@ -11,14 +11,14 @@ export const metadata: Metadata = {
     default: "Depois que eu acordei",
     template: "%s | Depois que eu acordei",
   },
-  description: "Fragmentos do que permaneceu depois do despertar.",
+  description: "Sonhos, desejos, conflitos e escolhas que me transformaram.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: "Depois que eu acordei",
     title: "Depois que eu acordei",
-    description: "Fragmentos do que permaneceu depois do despertar.",
+    description: "Sonhos, desejos, conflitos e escolhas que me transformaram.",
     url: "/",
   },
 };

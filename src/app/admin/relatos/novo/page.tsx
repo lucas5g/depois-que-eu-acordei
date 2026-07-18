@@ -8,9 +8,9 @@ export default async function NewDreamPage() {
     <div className="form-page">
       <div className="admin-heading">
         <div>
-          <p className="eyebrow">Novo fragmento</p>
-          <h1>Registrar um sonho</h1>
-          <p>Comece pela imagem e escreva tudo que ainda consegue alcançar.</p>
+          <p className="eyebrow">Novo relato</p>
+          <h1>Registrar uma experiência</h1>
+          <p>Comece pela imagem e escreva com honestidade sobre o que viveu por dentro.</p>
         </div>
       </div>
       <DreamForm action={createDream} mode="create" />

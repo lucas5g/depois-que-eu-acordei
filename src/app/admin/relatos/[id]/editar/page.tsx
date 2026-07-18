@@ -29,8 +29,8 @@ export default async function EditDreamPage({ params }: { params: Promise<{ id: 
     <div className="form-page">
       <div className="admin-heading">
         <div>
-          <p className="eyebrow">Revisitar memória</p>
-          <h1>Editar sonho</h1>
+          <p className="eyebrow">Revisitar experiência</p>
+          <h1>Editar relato</h1>
           <p>Altere o texto, substitua a foto ou mude o estado da publicação.</p>
         </div>
       </div>

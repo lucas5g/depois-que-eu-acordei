@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest";
 import { dreamSchema } from "./validation";
 
 describe("dreamSchema", () => {
-  it("aceita um sonho válido", () => {
+  it("aceita um relato válido", () => {
     expect(
       dreamSchema.safeParse({
-        title: "Uma casa azul",
-        description: "Eu caminhava por uma casa que não terminava.",
-        imageAlt: "Casa azul sob um céu escuro",
+        title: "Uma escolha difícil",
+        description: "Senti uma vontade intensa, mas escolhi não agir sobre ela.",
+        imageAlt: "Estrada vazia sob um céu escuro",
         status: "PUBLISHED",
       }).success,
     ).toBe(true);

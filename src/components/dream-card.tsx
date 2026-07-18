@@ -23,7 +23,7 @@ export function DreamCard({ dream, priority = false }: DreamCardProps) {
 
   return (
     <article className="dream-card">
-      <Link className="dream-card-link" href={`/sonhos/${dream.slug}`}>
+      <Link className="dream-card-link" href={`/relatos/${dream.slug}`}>
         <div className="dream-card-image">
           <Image
             src={imageUrl(dream.id, dream.updatedAt)}

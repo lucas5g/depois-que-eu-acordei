@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { excerpt, formatPublishedAt, imageUrl } from "@/lib/format";
+import { excerpt, formatPublishedAt, imageUrl, parseFormattedText } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -30,18 +30,18 @@ async function getDream(slug: string) {
 export async function generateMetadata({ params }: DreamPageProps): Promise<Metadata> {
   const { slug } = await params;
   const dream = await getDream(slug);
-  if (!dream) return { title: "Sonho não encontrado" };
+  if (!dream) return { title: "Relato não encontrado" };
   const image = imageUrl(dream.id, dream.updatedAt);
 
   return {
     title: dream.title,
     description: excerpt(dream.description, 155),
-    alternates: { canonical: `/sonhos/${dream.slug}` },
+    alternates: { canonical: `/relatos/${dream.slug}` },
     openGraph: {
       type: "article",
       title: dream.title,
       description: excerpt(dream.description, 155),
-      url: `/sonhos/${dream.slug}`,
+      url: `/relatos/${dream.slug}`,
       publishedTime: dream.publishedAt?.toISOString(),
       images: [{ url: image, width: dream.imageWidth, height: dream.imageHeight, alt: dream.imageAlt }],
     },
@@ -76,10 +76,14 @@ export default async function DreamPage({ params }: DreamPageProps) {
           {formatPublishedAt(dream.publishedAt)}
         </time>
       </header>
-      <div className="dream-body site-shell">{dream.description}</div>
+      <div className="dream-body site-shell">
+        {parseFormattedText(dream.description).map((part, index) =>
+          part.bold ? <strong key={index}>{part.text}</strong> : part.text,
+        )}
+      </div>
       <Link className="back-link" href="/">
         <ArrowLeft size={16} aria-hidden="true" />
-        Voltar aos sonhos
+        Voltar aos relatos
       </Link>
     </article>
   );

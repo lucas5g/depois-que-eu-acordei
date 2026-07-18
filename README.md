@@ -1,8 +1,8 @@
 # Depois que eu acordei
 
-Blog pessoal para publicar sonhos como fragmentos visuais e narrativos. O projeto
-possui páginas públicas, login com Google e um painel administrativo com controle
-de acesso por perfil.
+Blog pessoal para publicar relatos sobre sonhos, desejos, conflitos, escolhas e
+superações. O projeto possui páginas públicas, login com Google e um painel
+administrativo com controle de acesso por perfil.
 
 ## Stack
 
@@ -94,7 +94,7 @@ Toda conta Google verificada é criada inicialmente com o perfil `USER`. Depois 
 entrar pela primeira vez, promova a primeira conta diretamente no PostgreSQL:
 
 ```sql
-UPDATE "User"
+UPDATE "depois-que-eu-acordei"."User"
 SET "role" = 'ADMIN'
 WHERE "email" = 'seu-email@gmail.com';
 ```
@@ -132,9 +132,9 @@ PostgreSQL fornecido em `DATABASE_URL`.
 
 ## Regras principais
 
-- Visitantes leem sonhos publicados sem autenticação.
+- Visitantes leem relatos publicados sem autenticação.
 - Rascunhos e suas imagens são acessíveis apenas por administradores.
 - `USER` não visualiza nem acessa rotas administrativas.
-- `ADMIN` cria, edita, publica e exclui sonhos e gerencia perfis.
+- `ADMIN` cria, edita, publica e exclui relatos e gerencia perfis.
 - Autorização é verificada novamente no servidor em cada alteração.
 - Imagens aceitas: JPG, PNG e WebP, até 5 MB.

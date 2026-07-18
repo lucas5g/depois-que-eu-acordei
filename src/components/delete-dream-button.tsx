@@ -1,7 +1,7 @@
 "use client";
 
 import { Trash2 } from "lucide-react";
-import { deleteDream } from "@/app/admin/sonhos/actions";
+import { deleteDream } from "@/app/admin/relatos/actions";
 
 export function DeleteDreamButton({ id, title }: { id: string; title: string }) {
   return (

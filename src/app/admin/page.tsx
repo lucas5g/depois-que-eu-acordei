@@ -9,9 +9,9 @@ import { formatShortDate, imageUrl } from "@/lib/format";
 export const dynamic = "force-dynamic";
 
 const successMessages: Record<string, string> = {
-  criado: "Sonho criado com sucesso.",
-  atualizado: "Sonho atualizado com sucesso.",
-  excluido: "Sonho excluído.",
+  criado: "Relato criado com sucesso.",
+  atualizado: "Relato atualizado com sucesso.",
+  excluido: "Relato excluído.",
 };
 
 export default async function AdminPage({
@@ -40,12 +40,12 @@ export default async function AdminPage({
     <>
       <div className="admin-heading">
         <div>
-          <p className="eyebrow">Arquivo de memórias</p>
-          <h1>Seus sonhos</h1>
-          <p>Edite rascunhos e acompanhe tudo que já atravessou para o lado de fora.</p>
+          <p className="eyebrow">Arquivo pessoal</p>
+          <h1>Seus relatos</h1>
+          <p>Edite rascunhos e acompanhe as experiências que decidiu compartilhar.</p>
         </div>
-        <Link className="primary-button" href="/admin/sonhos/novo">
-          <Plus size={17} aria-hidden="true" /> Novo sonho
+        <Link className="primary-button" href="/admin/relatos/novo">
+          <Plus size={17} aria-hidden="true" /> Novo relato
         </Link>
       </div>
       {message && <p className="admin-notice" role="status">{message}</p>}
@@ -76,7 +76,7 @@ export default async function AdminPage({
                 {dream.status === "PUBLISHED" && (
                   <Link
                     className="icon-action"
-                    href={`/sonhos/${dream.slug}`}
+                    href={`/relatos/${dream.slug}`}
                     aria-label={`Ver ${dream.title}`}
                   >
                     <ExternalLink size={17} aria-hidden="true" />
@@ -84,7 +84,7 @@ export default async function AdminPage({
                 )}
                 <Link
                   className="icon-action"
-                  href={`/admin/sonhos/${dream.id}/editar`}
+                  href={`/admin/relatos/${dream.id}/editar`}
                   aria-label={`Editar ${dream.title}`}
                 >
                   <Edit3 size={17} aria-hidden="true" />
@@ -96,8 +96,8 @@ export default async function AdminPage({
         </div>
       ) : (
         <div className="empty-state">
-          <strong>Nenhum sonho registrado.</strong>
-          <span>Comece pelo fragmento que ainda está mais próximo.</span>
+          <strong>Nenhum relato registrado.</strong>
+          <span>Comece pela experiência que você deseja elaborar.</span>
         </div>
       )}
     </>

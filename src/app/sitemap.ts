@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     ...dreams.map((dream) => ({
-      url: `${baseUrl}/sonhos/${dream.slug}`,
+      url: `${baseUrl}/relatos/${dream.slug}`,
       lastModified: dream.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.8,

@@ -14,8 +14,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <aside className="admin-sidebar">
         <p className="admin-sidebar-label">Administração</p>
         <nav className="admin-nav" aria-label="Navegação administrativa">
-          <Link href="/admin">Sonhos</Link>
-          <Link href="/admin/sonhos/novo">Novo sonho</Link>
+          <Link href="/admin">Relatos</Link>
+          <Link href="/admin/relatos/novo">Novo relato</Link>
           <Link href="/admin/usuarios">Usuários</Link>
           <Link href="/">Ver o blog</Link>
         </nav>
