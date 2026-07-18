@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { excerpt, formatPublishedAt, imageUrl, parseFormattedText } from "@/lib/format";
+import {
+  excerpt,
+  formatPublishedAt,
+  imageUrl,
+  parseFormattedText,
+  socialImageUrl,
+} from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +37,7 @@ export async function generateMetadata({ params }: DreamPageProps): Promise<Meta
   const { slug } = await params;
   const dream = await getDream(slug);
   if (!dream) return { title: "Relato não encontrado" };
-  const image = imageUrl(dream.id, dream.updatedAt, "jpeg");
+  const image = socialImageUrl(dream.id, dream.updatedAt);
 
   return {
     title: dream.title,
@@ -45,8 +51,8 @@ export async function generateMetadata({ params }: DreamPageProps): Promise<Meta
       publishedTime: dream.publishedAt?.toISOString(),
       images: [{
         url: image,
-        width: dream.imageWidth,
-        height: dream.imageHeight,
+        width: 1200,
+        height: 630,
         alt: dream.imageAlt,
         type: "image/jpeg",
       }],

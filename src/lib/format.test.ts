@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { excerpt, parseFormattedText } from "./format";
+import { excerpt, parseFormattedText, socialImageUrl } from "./format";
 
 describe("parseFormattedText", () => {
   it("identifica texto entre asteriscos como negrito", () => {
@@ -28,5 +28,13 @@ describe("excerpt", () => {
   it("remove os marcadores de negrito do resumo", () => {
     expect(excerpt("Eu **superei esse desejo** hoje.")).toBe("Eu superei esse desejo hoje.");
     expect(excerpt("Eu *superei esse desejo* hoje.")).toBe("Eu superei esse desejo hoje.");
+  });
+});
+
+describe("socialImageUrl", () => {
+  it("gera uma URL JPEG versionada sem parâmetros", () => {
+    expect(socialImageUrl("relato-1", new Date("2026-07-18T20:00:00Z"))).toBe(
+      "/images/relato-1/social-1784404800000.jpg",
+    );
   });
 });

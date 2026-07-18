@@ -43,3 +43,7 @@ export function imageUrl(id: string, updatedAt: Date, format?: "jpeg") {
   if (format) query.set("format", format);
   return `/images/${id}?${query}`;
 }
+
+export function socialImageUrl(id: string, updatedAt: Date) {
+  return `/images/${id}/social-${updatedAt.getTime()}.jpg`;
+}
