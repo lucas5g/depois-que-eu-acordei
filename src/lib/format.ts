@@ -38,6 +38,8 @@ export function parseFormattedText(text: string) {
   });
 }
 
-export function imageUrl(id: string, updatedAt: Date) {
-  return `/images/${id}?v=${updatedAt.getTime()}`;
+export function imageUrl(id: string, updatedAt: Date, format?: "jpeg") {
+  const query = new URLSearchParams({ v: String(updatedAt.getTime()) });
+  if (format) query.set("format", format);
+  return `/images/${id}?${query}`;
 }

@@ -1,4 +1,5 @@
 import { type NextRequest } from "next/server";
+import sharp from "sharp";
 import { getCurrentUser } from "@/lib/auth-guard";
 import { prisma } from "@/lib/db";
 
@@ -20,32 +21,29 @@ export async function GET(
   });
 
   if (!image) return new Response("Imagem não encontrada.", { status: 404 });
-  if (image.status !== "PUBLISHED") {
+  const isPublic = image.status === "PUBLISHED";
+  if (!isPublic) {
     const user = await getCurrentUser();
     if (user?.role !== "ADMIN") {
       return new Response("Imagem não encontrada.", { status: 404 });
     }
-
-    return new Response(Buffer.from(image.imageData), {
-      headers: {
-        "Content-Type": image.imageMime,
-        "Content-Length": String(image.imageData.byteLength),
-        "Cache-Control": "private, no-store",
-        "X-Content-Type-Options": "nosniff",
-      },
-    });
   }
 
-  const etag = `"${id}-${image.updatedAt.getTime()}"`;
-  if (request.headers.get("if-none-match") === etag) {
+  const format = request.nextUrl.searchParams.get("format");
+  const wantsJpeg = format === "jpeg";
+  const etag = `"${id}-${image.updatedAt.getTime()}${wantsJpeg ? "-jpeg" : ""}"`;
+  if (isPublic && request.headers.get("if-none-match") === etag) {
     return new Response(null, { status: 304, headers: { ETag: etag } });
   }
 
-  return new Response(Buffer.from(image.imageData), {
+  const source = Buffer.from(image.imageData);
+  const data = wantsJpeg ? await sharp(source).jpeg({ quality: 86 }).toBuffer() : source;
+
+  return new Response(data, {
     headers: {
-      "Content-Type": image.imageMime,
-      "Content-Length": String(image.imageData.byteLength),
-      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Content-Type": wantsJpeg ? "image/jpeg" : image.imageMime,
+      "Content-Length": String(data.byteLength),
+      "Cache-Control": isPublic ? "public, max-age=0, must-revalidate" : "private, no-store",
       ETag: etag,
       "X-Content-Type-Options": "nosniff",
     },

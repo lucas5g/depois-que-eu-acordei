@@ -37,7 +37,7 @@ DATABASE_URL="postgresql://usuario:senha@localhost:5432/depois_que_eu_acordei"
 AUTH_SECRET="uma-chave-aleatoria-longa"
 AUTH_GOOGLE_ID="cliente-google.apps.googleusercontent.com"
 AUTH_GOOGLE_SECRET="segredo-do-cliente-google"
-NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+SITE_URL="http://localhost:3000"
 APP_TIME_ZONE="America/Sao_Paulo"
 ```
 
@@ -120,7 +120,9 @@ npm run db:studio    # interface de inspeção do banco
 ## Deploy na Vercel
 
 1. Importe o repositório na Vercel.
-2. Cadastre todas as variáveis de `.env.example` nas configurações do projeto.
+2. Cadastre as credenciais e a conexão do banco nas configurações do projeto.
+   Defina `SITE_URL` com o domínio público, ou deixe-a ausente para usar
+   automaticamente o domínio de produção fornecido pela Vercel.
 3. Use uma conexão PostgreSQL compatível com aplicações serverless, preferencialmente
    com pool de conexões.
 4. Adicione o domínio de produção e seu callback no cliente OAuth do Google.

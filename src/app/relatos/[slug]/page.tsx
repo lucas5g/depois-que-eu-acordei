@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: DreamPageProps): Promise<Meta
   const { slug } = await params;
   const dream = await getDream(slug);
   if (!dream) return { title: "Relato não encontrado" };
-  const image = imageUrl(dream.id, dream.updatedAt);
+  const image = imageUrl(dream.id, dream.updatedAt, "jpeg");
 
   return {
     title: dream.title,
@@ -43,7 +43,13 @@ export async function generateMetadata({ params }: DreamPageProps): Promise<Meta
       description: excerpt(dream.description, 155),
       url: `/relatos/${dream.slug}`,
       publishedTime: dream.publishedAt?.toISOString(),
-      images: [{ url: image, width: dream.imageWidth, height: dream.imageHeight, alt: dream.imageAlt }],
+      images: [{
+        url: image,
+        width: dream.imageWidth,
+        height: dream.imageHeight,
+        alt: dream.imageAlt,
+        type: "image/jpeg",
+      }],
     },
     twitter: {
       card: "summary_large_image",
