@@ -45,5 +45,5 @@ export function imageUrl(id: string, updatedAt: Date, format?: "jpeg") {
 }
 
 export function socialImageUrl(id: string, updatedAt: Date) {
-  return `/images/${id}/social-${updatedAt.getTime()}.jpg`;
+  return `/images/${id}/social-v2-${updatedAt.getTime()}.jpg`;
 }

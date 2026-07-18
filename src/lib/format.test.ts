@@ -34,7 +34,7 @@ describe("excerpt", () => {
 describe("socialImageUrl", () => {
   it("gera uma URL JPEG versionada sem parâmetros", () => {
     expect(socialImageUrl("relato-1", new Date("2026-07-18T20:00:00Z"))).toBe(
-      "/images/relato-1/social-1784404800000.jpg",
+      "/images/relato-1/social-v2-1784404800000.jpg",
     );
   });
 });

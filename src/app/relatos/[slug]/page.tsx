@@ -45,6 +45,8 @@ export async function generateMetadata({ params }: DreamPageProps): Promise<Meta
     alternates: { canonical: `/relatos/${dream.slug}` },
     openGraph: {
       type: "article",
+      locale: "pt_BR",
+      siteName: "Depois que eu acordei",
       title: dream.title,
       description: excerpt(dream.description, 155),
       url: `/relatos/${dream.slug}`,

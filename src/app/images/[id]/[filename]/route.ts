@@ -14,7 +14,7 @@ export async function GET(
     select: { imageData: true, updatedAt: true, status: true },
   });
 
-  const expectedFilename = image ? `social-${image.updatedAt.getTime()}.jpg` : "";
+  const expectedFilename = image ? `social-v2-${image.updatedAt.getTime()}.jpg` : "";
   if (!image || image.status !== "PUBLISHED" || filename !== expectedFilename) {
     return new Response("Imagem não encontrada.", { status: 404 });
   }
@@ -26,7 +26,8 @@ export async function GET(
 
   const data = await sharp(Buffer.from(image.imageData))
     .resize(1200, 630, { fit: "cover", position: "attention" })
-    .jpeg({ quality: 86, progressive: true })
+    .flatten({ background: "#171918" })
+    .jpeg({ quality: 86, progressive: false, chromaSubsampling: "4:2:0" })
     .toBuffer();
 
   return new Response(data, {
